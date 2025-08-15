@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pahana Edu Bookshop</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Default (Blue) Theme */
+        :root {
+            --primary-color: #1a73e8;
+            --primary-light: #4c8be8;
+            --accent-color: #38a169;
+            --text-color: #2d3748;
+            --header-bg: #ffffff;
+            --nav-bg: #1a73e8;
+        }
+
+        /* Green Theme */
+        .theme-green {
+            --primary-color: #38a169;
+            --primary-light: #48bb78;
+            --accent-color: #f6ad55;
+            --text-color: #2d3748;
+            --header-bg: #f0fdf4;
+            --nav-bg: #38a169;
+        }
+
+        .text-primary {
+            color: var(--primary-color);
+        }
+        .bg-primary {
+            background-color: var(--primary-color);
+        }
+        .bg-primary-light {
+            background-color: var(--primary-light);
+        }
+        .text-accent {
+            color: var(--accent-color);
+        }
+        .bg-accent {
+            background-color: var(--accent-color);
+        }
+        .bg-header {
+            background-color: var(--header-bg);
+        }
+        .bg-nav {
+            background-color: var(--nav-bg);
+        }
+
+        .transition-colors {
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+<!-- Main container with Inter font family -->
+<div class="antialiased text-gray-800">
+    <!-- Top Header -->
+    <header class="bg-header shadow-sm transition-colors">
+        <div class="container mx-auto px-4 py-2 flex flex-col md:flex-row justify-between items-center text-sm">
+            <div class="flex items-center space-x-4 mb-2 md:mb-0 text-gray-600">
+                <span>Web Orders: +94 711304050</span>
+                <span>Email: info@mybookshop.lk</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="#" class="text-gray-600 hover:text-primary transition-colors">Advanced Search</a>
+                <a href="#" class="text-gray-600 hover:text-primary transition-colors">Login / Signup</a>
+                <a href="#" class="text-gray-600 hover:text-primary transition-colors">My Account</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Bar -->
+    <nav class="bg-nav shadow-lg transition-colors">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="text-white text-2xl font-bold">My Bookshop</a>
+            <!-- Main Nav Links -->
+            <ul class="hidden md:flex space-x-6 text-white font-medium">
+                <li><a href="#" class="hover:underline">Latest Arrivals</a></li>
+                <li><a href="#" class="hover:underline">Children's Books</a></li>
+                <li><a href="#" class="hover:underline">Fiction</a></li>
+                <li><a href="#" class="hover:underline">International Books</a></li>
+                <li><a href="#" class="hover:underline">E-Books</a></li>
+                <li><a href="#" class="hover:underline">Branches</a></li>
+            </ul>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-nav text-white px-4 py-2 transition-colors">
+        <ul class="flex flex-col space-y-2 font-medium">
+            <li><a href="#" class="block hover:bg-primary-light px-2 py-1 rounded transition-colors">Latest Arrivals</a></li>
+            <li><a href="#" class="block hover:bg-primary-light px-2 py-1 rounded transition-colors">Children's Books</a></li>
+            <li><a href="#" class="block hover:bg-primary-light px-2 py-1 rounded transition-colors">Fiction</a></li>
+            <li><a href="#" class="block hover:bg-primary-light px-2 py-1 rounded transition-colors">International Books</a></li>
+            <li><a href="#" class="block hover:bg-primary-light px-2 py-1 rounded transition-colors">E-Books</a></li>
+            <li><a href="#" class="block hover:bg-primary-light px-2 py-1 rounded transition-colors">Branches</a></li>
+        </ul>
+    </div>
+
+    <!-- Theme Switcher -->
+    <div class="container mx-auto px-4 py-4 flex justify-end">
+        <div class="flex items-center space-x-2">
+            <span class="text-gray-600 text-sm">Themes:</span>
+            <button id="theme-blue-btn" class="w-8 h-8 rounded-full bg-primary transition-colors border-2 border-transparent focus:border-gray-500"></button>
+            <button id="theme-green-btn" class="w-8 h-8 rounded-full bg-green-500 transition-colors border-2 border-transparent focus:border-gray-500"></button>
+        </div>
+    </div>
+
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Image Carousel -->
+        <div id="carousel-container" class="relative w-full overflow-hidden rounded-lg shadow-lg mb-8">
+            <div id="carousel-track" class="flex transition-transform duration-500 ease-in-out">
+                <div class="w-full flex-shrink-0"><img src="https://placehold.co/1200x400/primary/ffffff?text=Great+Deals+on+New+Arrivals" alt="Banner 1" class="w-full object-cover rounded-lg"></div>
+                <div class="w-full flex-shrink-0"><img src="https://placehold.co/1200x400/0f4c81/ffffff?text=Discover+Your+Next+Favorite+Book" alt="Banner 2" class="w-full object-cover rounded-lg"></div>
+                <div class="w-full flex-shrink-0"><img src="https://placehold.co/1200x400/1a73e8/ffffff?text=Shop+International+Titles" alt="Banner 3" class="w-full object-cover rounded-lg"></div>
+            </div>
+            <!-- Carousel Nav Buttons -->
+            <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-all focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+        </div>
+
+        <!-- Book Categories Section -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Explore Categories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <a href="#" class="bg-white p-4 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">Fiction</a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">Children</a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">Novels</a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">Translations</a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">Short Stories</a>
+                <a href="#" class="bg-white p-4 rounded-lg shadow-md text-center hover:shadow-xl transition-shadow">Education</a>
+            </div>
+        </section>
+
+        <!-- Featured Arrivals Section -->
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">Featured Arrivals</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Book Item 1 -->
+                <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/200x300/e0e0e0/333333?text=Book+Cover+1" alt="Book Cover" class="w-full h-48 object-contain mb-4 rounded-md">
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">The Great Adventure</h3>
+                        <p class="text-gray-600 mb-2">By Jane Doe</p>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-sm line-through text-gray-500">LKR 1500.00</span>
+                            <span class="text-xl font-bold text-primary transition-colors">LKR 1200.00</span>
+                        </div>
+                        <span class="bg-accent text-white text-xs font-semibold px-2 py-1 rounded-full transition-colors">-20%</span>
+                    </div>
+                    <div class="mt-4 flex space-x-2">
+                        <button class="flex-1 bg-primary text-white py-2 rounded-md hover:bg-primary-light transition-colors quick-view-btn">Quick View</button>
+                        <button class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-md hover:bg-gray-300 transition-colors add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- Book Item 2 -->
+                <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/200x300/d0d0d0/333333?text=Book+Cover+2" alt="Book Cover" class="w-full h-48 object-contain mb-4 rounded-md">
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Mystery of the Manor</h3>
+                        <p class="text-gray-600 mb-2">By John Smith</p>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-sm line-through text-gray-500">LKR 1200.00</span>
+                            <span class="text-xl font-bold text-primary transition-colors">LKR 1080.00</span>
+                        </div>
+                        <span class="bg-accent text-white text-xs font-semibold px-2 py-1 rounded-full transition-colors">-10%</span>
+                    </div>
+                    <div class="mt-4 flex space-x-2">
+                        <button class="flex-1 bg-primary text-white py-2 rounded-md hover:bg-primary-light transition-colors quick-view-btn">Quick View</button>
+                        <button class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-md hover:bg-gray-300 transition-colors add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- Book Item 3 -->
+                <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/200x300/c0c0c0/333333?text=Book+Cover+3" alt="Book Cover" class="w-full h-48 object-contain mb-4 rounded-md">
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">The Coder's Guide</h3>
+                        <p class="text-gray-600 mb-2">By Alex Chan</p>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-sm line-through text-gray-500">LKR 2000.00</span>
+                            <span class="text-xl font-bold text-primary transition-colors">LKR 1800.00</span>
+                        </div>
+                        <span class="bg-accent text-white text-xs font-semibold px-2 py-1 rounded-full transition-colors">-10%</span>
+                    </div>
+                    <div class="mt-4 flex space-x-2">
+                        <button class="flex-1 bg-primary text-white py-2 rounded-md hover:bg-primary-light transition-colors quick-view-btn">Quick View</button>
+                        <button class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-md hover:bg-gray-300 transition-colors add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- Book Item 4 -->
+                <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/200x300/b0b0b0/333333?text=Book+Cover+4" alt="Book Cover" class="w-full h-48 object-contain mb-4 rounded-md">
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">The Forgotten City</h3>
+                        <p class="text-gray-600 mb-2">By Emily White</p>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-sm line-through text-gray-500">LKR 1800.00</span>
+                            <span class="text-xl font-bold text-primary transition-colors">LKR 1620.00</span>
+                        </div>
+                        <span class="bg-accent text-white text-xs font-semibold px-2 py-1 rounded-full transition-colors">-10%</span>
+                    </div>
+                    <div class="mt-4 flex space-x-2">
+                        <button class="flex-1 bg-primary text-white py-2 rounded-md hover:bg-primary-light transition-colors quick-view-btn">Quick View</button>
+                        <button class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-md hover:bg-gray-300 transition-colors add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bestsellers Section -->
+        <section>
+            <h2 class="text-2xl font-semibold mb-4">Bestsellers</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Book Item 5 -->
+                <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/200x300/a0a0a0/333333?text=Book+Cover+5" alt="Book Cover" class="w-full h-48 object-contain mb-4 rounded-md">
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">World of Wonder</h3>
+                        <p class="text-gray-600 mb-2">By Sarah Lee</p>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-sm line-through text-gray-500">LKR 1400.00</span>
+                            <span class="text-xl font-bold text-primary transition-colors">LKR 1260.00</span>
+                        </div>
+                        <span class="bg-accent text-white text-xs font-semibold px-2 py-1 rounded-full transition-colors">-10%</span>
+                    </div>
+                    <div class="mt-4 flex space-x-2">
+                        <button class="flex-1 bg-primary text-white py-2 rounded-md hover:bg-primary-light transition-colors quick-view-btn">Quick View</button>
+                        <button class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-md hover:bg-gray-300 transition-colors add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- Book Item 6 -->
+                <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/200x300/909090/333333?text=Book+Cover+6" alt="Book Cover" class="w-full h-48 object-contain mb-4 rounded-md">
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">The Last Guardian</h3>
+                        <p class="text-gray-600 mb-2">By Mark Johnson</p>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-sm line-through text-gray-500">LKR 1900.00</span>
+                            <span class="text-xl font-bold text-primary transition-colors">LKR 1710.00</span>
+                        </div>
+                        <span class="bg-accent text-white text-xs font-semibold px-2 py-1 rounded-full transition-colors">-10%</span>
+                    </div>
+                    <div class="mt-4 flex space-x-2">
+                        <button class="flex-1 bg-primary text-white py-2 rounded-md hover:bg-primary-light transition-colors quick-view-btn">Quick View</button>
+                        <button class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-md hover:bg-gray-300 transition-colors add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- Book Item 7 -->
+                <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/200x300/808080/333333?text=Book+Cover+7" alt="Book Cover" class="w-full h-48 object-contain mb-4 rounded-md">
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Beyond the Stars</h3>
+                        <p class="text-gray-600 mb-2">By David Chen</p>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-sm line-through text-gray-500">LKR 2100.00</span>
+                            <span class="text-xl font-bold text-primary transition-colors">LKR 1890.00</span>
+                        </div>
+                        <span class="bg-accent text-white text-xs font-semibold px-2 py-1 rounded-full transition-colors">-10%</span>
+                    </div>
+                    <div class="mt-4 flex space-x-2">
+                        <button class="flex-1 bg-primary text-white py-2 rounded-md hover:bg-primary-light transition-colors quick-view-btn">Quick View</button>
+                        <button class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-md hover:bg-gray-300 transition-colors add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- Book Item 8 -->
+                <div class="bg-white rounded-lg shadow-md p-4 flex flex-col justify-between hover:shadow-xl transition-shadow">
+                    <img src="https://placehold.co/200x300/707070/333333?text=Book+Cover+8" alt="Book Cover" class="w-full h-48 object-contain mb-4 rounded-md">
+                    <div>
+                        <h3 class="font-bold text-lg mb-1">Echoes of the Past</h3>
+                        <p class="text-gray-600 mb-2">By Olivia Green</p>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="text-sm line-through text-gray-500">LKR 1650.00</span>
+                            <span class="text-xl font-bold text-primary transition-colors">LKR 1485.00</span>
+                        </div>
+                        <span class="bg-accent text-white text-xs font-semibold px-2 py-1 rounded-full transition-colors">-10%</span>
+                    </div>
+                    <div class="mt-4 flex space-x-2">
+                        <button class="flex-1 bg-primary text-white py-2 rounded-md hover:bg-primary-light transition-colors quick-view-btn">Quick View</button>
+                        <button class="flex-1 bg-gray-200 text-gray-700 py-2 rounded-md hover:bg-gray-300 transition-colors add-to-cart-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 My Bookshop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for messages -->
+    <div id="message-modal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-xl text-center">
+            <p id="modal-message" class="text-lg font-semibold mb-4"></p>
+            <button id="close-modal-btn" class="bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-light transition-colors">Close</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // JavaScript for interactive components
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Image Carousel functionality
+    const carouselTrack = document.getElementById('carousel-track');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let currentIndex = 0;
+    const items = carouselTrack.children;
+
+    function updateCarousel() {
+        carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % items.length;
+        updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        updateCarousel();
+    });
+
+    // Auto-advance the carousel every 5 seconds
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % items.length;
+        updateCarousel();
+    }, 5000);
+
+    // Modal for messages
+    const modal = document.getElementById('message-modal');
+    const modalMessage = document.getElementById('modal-message');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+
+    function showMessage(message) {
+        modalMessage.textContent = message;
+        modal.classList.remove('hidden');
+    }
+
+    closeModalBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+
+    // Add to Cart buttons
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const bookTitle = button.closest('.bg-white').querySelector('h3').textContent;
+            showMessage(`Added "${bookTitle}" to your cart!`);
+        });
+    });
+
+    // Quick View buttons
+    const quickViewButtons = document.querySelectorAll('.quick-view-btn');
+    quickViewButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const bookTitle = button.closest('.bg-white').querySelector('h3').textContent;
+            showMessage(`Quick View for "${bookTitle}" is not implemented yet.`);
+        });
+    });
+
+    // Theme switcher functionality
+    const body = document.body;
+    const blueThemeBtn = document.getElementById('theme-blue-btn');
+    const greenThemeBtn = document.getElementById('theme-green-btn');
+
+    // Function to apply a theme
+    function applyTheme(theme) {
+        body.classList.remove('theme-blue', 'theme-green');
+        if (theme === 'green') {
+            body.classList.add('theme-green');
+        }
+        localStorage.setItem('theme', theme);
+    }
+
+    // Set initial theme on page load
+    const savedTheme = localStorage.getItem('theme') || 'blue';
+    applyTheme(savedTheme);
+
+    blueThemeBtn.addEventListener('click', () => {
+        applyTheme('blue');
+    });
+
+    greenThemeBtn.addEventListener('click', () => {
+        applyTheme('green');
+    });
+
+</script>
+
+</body>
+</html>

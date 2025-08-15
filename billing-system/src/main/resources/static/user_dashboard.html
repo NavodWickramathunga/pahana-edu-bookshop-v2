@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard | Pahana Edu Bookshop</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
+        .bg-primary { background-color: #1a73e8; }
+        .hover\:bg-primary-light:hover { background-color: #4c8be8; }
+        .bg-accent { background-color: #38a169; }
+    </style>
+</head>
+<body class="bg-gray-100 antialiased">
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-white p-8 rounded-lg shadow-xl max-w-2xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Welcome, <span id="userName"></span>!</h2>
+        <div id="customerDetails" class="space-y-4">
+            <h3 class="text-xl font-semibold mb-2">Your Account Details</h3>
+            <p><strong>Account Number:</strong> <span id="accNumber" class="font-medium text-gray-700"></span></p>
+            <p><strong>Name:</strong> <span id="custName" class="font-medium text-gray-700"></span></p>
+            <p><strong>Address:</strong> <span id="custAddress" class="font-medium text-gray-700"></span></p>
+            <p><strong>Telephone:</strong> <span id="custTelephone" class="font-medium text-gray-700"></span></p>
+            <p><strong>Units Consumed:</strong> <span id="custUnits" class="font-medium text-gray-700"></span></p>
+        </div>
+        <div class="mt-8 flex justify-center space-x-4">
+            <button onclick="logout()" class="bg-gray-500 text-white py-2 px-4 rounded-md font-semibold hover:bg-gray-600 transition-colors">
+                Logout
+            </button>
+            <button onclick="location.href='index.html'" class="bg-gray-500 text-white py-2 px-4 rounded-md font-semibold hover:bg-gray-600 transition-colors">
+                Back to Main
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="user_dashboard_script.js"></script>
+</body>
+</html>

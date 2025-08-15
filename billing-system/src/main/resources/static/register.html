@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h2>User Registration</h2>
+    <form id="registrationForm">
+        <label for="mobileNumber">Mobile Number:</label>
+        <input type="text" id="mobileNumber" name="mobileNumber" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Register</button>
+    </form>
+    <p id="message"></p>
+</div>
+<script>
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const mobileNumber = document.getElementById('mobileNumber').value;
+        const password = document.getElementById('password').value;
+
+        fetch('/api/users/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ mobileNumber, password })
+        })
+            .then(response => {
+                const messageDiv = document.getElementById('message');
+                if (response.status === 201) {
+                    messageDiv.textContent = 'User registered successfully! You can now log in.';
+                    messageDiv.style.color = 'green';
+                } else {
+                    messageDiv.textContent = 'Registration failed. Please try again.';
+                    messageDiv.style.color = 'red';
+                }
+            })
+            .catch(error => {
+                const messageDiv = document.getElementById('message');
+                messageDiv.textContent = 'An error occurred. Please check your network and try again.';
+                messageDiv.style.color = 'red';
+                console.error('Error:', error);
+            });
+    });
+</script>
+</body>
+</html>
